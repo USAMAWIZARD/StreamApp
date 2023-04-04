@@ -22,10 +22,7 @@ jobs:
       - run: npm install --include=dev	
       - run: npm install --save-dev @babel/cli	
       - run: npm run compile	
-      - run: echo "LATEST_SNAPSHOT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV	
-        env:	
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - run: npm version ${{ env.LATEST_SNAPSHOT_VERSION }}"-`date +"%Y-%b-%d-%I-%M"`"  --no-git-tag-version	
-      - run: npm publish --tag SNAPSHOT	
-        env:	
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}	
+      - run: cd /src/test/js/
+      - run: npm install 
+      - run: npm run test
+
