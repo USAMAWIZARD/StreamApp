@@ -19,6 +19,20 @@ jobs:
       - name: Update The Snapshot	
         id: get_version	
         run: echo "VERSION=$(echo ${GITHUB_REF##*/} | cut -d v -f 2)" >> $GITHUB_OUTPUT
+        
+      - run: git clone https://github.com/ant-media/ant-media-server-parent.git
+      - run: cd ant-media-server-parent/
+      - run: mvn clean install -Dgpg.skip=true
+      - run: cd ..
+      
+      - run: git clone https://github.com/ant-media/Ant-Media-Server.git
+      - run: cd Ant-Media-Server
+      - run: mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
+      - run: ./repackage_community.sh
+      
+      - run: wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
+      - run: sudo ./install_ant-media-server.sh -i ant*.zip
+      
       - run: npm install --include=dev	
       - run: npm install --save-dev @babel/cli	
       - run: npm run compile	
@@ -26,4 +40,5 @@ jobs:
       - run: sudo dpkg -i google-chrome-stable_100.0.4896.127-1_amd64.deb
       - run: npm install ./src/test/js/
       - run: npm run test  --prefix ./src/test/js/
+
 
