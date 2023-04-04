@@ -23,7 +23,7 @@ jobs:
       - run: npm install --save-dev @babel/cli	
       - run: npm run compile	
       - run: wget http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_100.0.4896.127-1_amd64.deb
-      - run: dpkg -i google-chrome-stable_100.0.4896.127-1_amd64.deb
+      - run: sudo dpkg -i google-chrome-stable_100.0.4896.127-1_amd64.deb
       - run: apt-get -y install google-chrome-stable=100.0.4896.58
       - run: npm install ./src/test/js/
       - run: npm run test  --prefix ./src/test/js/
