@@ -24,5 +24,7 @@ jobs:
       - run: npm run compile	
       - run: cd src/test/js/
       - run: npm install 
+      - run: pwd
+      - run: ls
       - run: npm run test
 
