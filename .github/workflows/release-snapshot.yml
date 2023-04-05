@@ -34,7 +34,7 @@ jobs:
       - run: Ant-Media-Server/repackage_community.sh
       
       - run: wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
-      - run: sudo ./install_ant-media-server.sh -i Ant-Media-Server/ant*.zip
+      - run: sudo ./install_ant-media-server.sh -i Ant-Media-Server/*.zip
       
       - run: npm install --include=dev	
       - run: npm install --save-dev @babel/cli	
