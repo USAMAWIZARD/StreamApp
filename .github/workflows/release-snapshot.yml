@@ -32,7 +32,7 @@ jobs:
       - run: ls Ant-Media-Server/
       - run: ls 
       - run: pwd
-      - run: sudo ./install_ant-media-server.sh -i Ant-Media-Server/*.zip
+      - run: sudo ./install_ant-media-server.sh -i Ant-Media-Server/target/*.zip
     
       
       - run: npm install --include=dev	
