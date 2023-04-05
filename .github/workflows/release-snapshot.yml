@@ -28,7 +28,6 @@ jobs:
           git clone https://github.com/ant-media/Ant-Media-Server.git
           cd Ant-Media-Server
           mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
-          cd Ant-Media-Server 
           sudo sh ./repackage_community.sh
           wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
           sudo ./install_ant-media-server.sh -i ./target/ant*.zip
