@@ -18,7 +18,7 @@ jobs:
           distribution: 'adopt'	
       - name: Update The Snapshot	
         id: get_version	
-        run: echo "VERSION=$(echo ${GITHUB_REF##*/} | cut -d v -f 2)" >> $GITHUB_OUTPUT |
+        run: echo "VERSION=$(echo ${GITHUB_REF##*/} | cut -d v -f 2)" >> $GITHUB_OUTPUT 
       - name: install ams 
         run: |
           git clone https://github.com/ant-media/ant-media-server-parent.git
