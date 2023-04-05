@@ -5,7 +5,7 @@ on:
       - master	
 jobs:	
   publish-npmjs:	
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-20.04	
     steps:	
       - uses: actions/checkout@v3	
       - uses: actions/setup-node@v3	
@@ -19,20 +19,19 @@ jobs:
       - name: Update The Snapshot	
         id: get_version	
         run: echo "VERSION=$(echo ${GITHUB_REF##*/} | cut -d v -f 2)" >> $GITHUB_OUTPUT
-      
+        
       - run: git clone https://github.com/ant-media/ant-media-server-parent.git
-      - run: mvn clean install  -f ant-media-server-parent/pom.xml -Dgpg.skip=true
+      - run: cd ant-media-server-parent/
+      - run: mvn clean install -Dgpg.skip=true
       - run: cd ..
       
       - run: git clone https://github.com/ant-media/Ant-Media-Server.git
-      - run: mvn clean  install -f Ant-Media-Server/pom.xml -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
-      - run: sudo sh Ant-Media-Server/repackage_community.sh
+      - run: cd Ant-Media-Server
+      - run: mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
+      - run: Ant-Media-Server/repackage_community.sh
+      
       - run: wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
-      - run: ls Ant-Media-Server/target
-      - run: ls 
-      - run: pwd
-      - run: sudo ./install_ant-media-server.sh -i Ant-Media-Server/target/ant-media-server-community.zip
-    
+      - run: sudo ./install_ant-media-server.sh -i Ant-Media-Server/ant*.zip
       
       - run: npm install --include=dev	
       - run: npm install --save-dev @babel/cli	
@@ -41,5 +40,3 @@ jobs:
       - run: sudo dpkg -i google-chrome-stable_100.0.4896.127-1_amd64.deb
       - run: npm install ./src/test/js/
       - run: npm run test  --prefix ./src/test/js/
-
-
