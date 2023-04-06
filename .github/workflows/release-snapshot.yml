@@ -40,6 +40,7 @@ jobs:
         run: npm install --include=dev	
       - run: npm install --save-dev @babel/cli	
       - run: npm run compile
+      - run: sed -i 's/^AMS_DIR=.*/AMS_DIR=\/usr\/local\/antmedia/' redeploy.sh
       - run: sudo ./redeploy.sh
       - name: run js tetsts
         run: npm install ./src/test/js/
