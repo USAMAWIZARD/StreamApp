@@ -33,11 +33,14 @@ jobs:
           sudo ./install_ant-media-server.sh -i ./target/ant*.zip
           
     
-      
-      - run: npm install --include=dev	
-      - run: npm install --save-dev @babel/cli	
-      - run: npm run compile	
+      - name: install chrome
       - run: wget http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_100.0.4896.127-1_amd64.deb
       - run: sudo dpkg -i google-chrome-stable_100.0.4896.127-1_amd64.deb
+      - name: compile and redeploy streamapp 
+      - run: npm install --include=dev	
+      - run: npm install --save-dev @babel/cli	
+      - run: npm run compile
+      - run: sudo ./redeploy.sh
+      - name: run js tetsts
       - run: npm install ./src/test/js/
       - run: npm run test  --prefix ./src/test/js/
