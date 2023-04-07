@@ -6,7 +6,7 @@ import { path } from "chromedriver";
 import { ExpectedConditions as EC } from 'protractor'
 let driver = null;
 const chromeOptions = new chrome.Options().addArguments("use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream").headless();
-const URL = "https://test.antmedia.io:5443/LiveApp/conference.html";
+const URL = "http://localhost:5080/LiveApp/conference.html";
 
 describe("Selenium", () => {
   beforeEach(async () => {
