@@ -6,6 +6,8 @@ import { path } from "chromedriver";
 import { ExpectedConditions as EC } from 'protractor'
 let driver = null;
 const chromeOptions = new chrome.Options().addArguments("use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream").headless();
+chromeOptions.set_capability('unhandledPromptBehavior', 'accept')
+
 const URL = "http://localhost:5080/LiveApp/multitrack-conference.html";
 
 describe("Selenium", () => {
