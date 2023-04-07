@@ -14,7 +14,6 @@ describe("Selenium", () => {
     driver = await new Builder(path)
     .forBrowser("chrome")
     .withCapabilities({'unhandledPromptBehavior': 'accept'})
-
     .setChromeOptions(chromeOptions)
     .build();
     await driver.get(URL);
