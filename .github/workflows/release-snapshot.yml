@@ -1,4 +1,4 @@
-name: publish Node.js Package	
+name: Run JS Test Cases
 on:	
   push:	
     branches:	
@@ -16,10 +16,7 @@ jobs:
         with:	
           java-version: '11'	
           distribution: 'adopt'	
-      - name: Update The Snapshot	
-        id: get_version	
-        run: echo "VERSION=$(echo ${GITHUB_REF##*/} | cut -d v -f 2)" >> $GITHUB_OUTPUT 
-      - name: install ams 
+      - name: Install AMS 
         run: |
           git clone https://github.com/ant-media/ant-media-server-parent.git
           cd ant-media-server-parent/
@@ -31,17 +28,15 @@ jobs:
           sudo sh ./repackage_community.sh
           wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
           sudo ./install_ant-media-server.sh -i ./target/ant*.zip
-          
-    
-      - name: install chrome
+      - name: Install Chrome 100 
         run: wget http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_100.0.4896.127-1_amd64.deb
       - run: sudo dpkg -i google-chrome-stable_100.0.4896.127-1_amd64.deb
-      - name: compile and redeploy streamapp 
+      - name: Compile and Redeploy StreamApp
         run: npm install --include=dev	
       - run: npm install --save-dev @babel/cli	
       - run: npm run compile
       - run: sed -i 's/^AMS_DIR=.*/AMS_DIR=\/usr\/local\/antmedia/' redeploy.sh
       - run: sudo ./redeploy.sh
-      - name: run js tetsts
+      - name: Run JS Tests
         run: npm install ./src/test/js/
       - run: npm run test  --prefix ./src/test/js/
