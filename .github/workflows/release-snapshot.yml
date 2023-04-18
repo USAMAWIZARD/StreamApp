@@ -30,7 +30,7 @@ jobs:
           git clone https://github.com/ant-media/Ant-Media-Server.git
           cd Ant-Media-Server
           mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
-          git clone https://Ant-Media-Enterprise:${{ CI_PAT }}@gitlab.com/Ant-Media/Ant-Media-Enterprise.git
+          git clone https://Ant-Media-Enterprise:${{ secrets.CI_PAT }}@gitlab.com/Ant-Media/Ant-Media-Enterprise.git
           cd Ant-Media-Enterprise
           sudo ./redeploy.sh
           #wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
