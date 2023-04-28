@@ -25,7 +25,13 @@ jobs:
           mvn clean install -Dgpg.skip=true
           cd ..
           
-
+          # Install SRT Dependencies 
+          wget https://storage.sbg.cloud.ovh.net/v1/AUTH_8cb28f9bc6ee43f0a3a1825efbb4311e/test-storage/srt-all.zip
+          rm -rf ~/.m2/repository/org/bytedeco/srt
+          rm -rf ~/.m2/repository/org/bytedeco/srt-platform
+          unzip srt-all.zip
+          mv srt ~/.m2/repository/org/bytedeco
+          mv srt-platform ~/.m2/repository/org/bytedeco
           
           # Build Ant Media Server 
           git clone https://github.com/ant-media/Ant-Media-Server.git
@@ -43,14 +49,7 @@ jobs:
           cd Plugins/FilterPlugin
           mvn install -Dmaven.test.skip=true -Dgpg.skip=true
           cd ../../
-          
-          # Install SRT Dependencies 
-          wget https://storage.sbg.cloud.ovh.net/v1/AUTH_8cb28f9bc6ee43f0a3a1825efbb4311e/test-storage/srt-all.zip
-          rm -rf ~/.m2/repository/org/bytedeco/srt
-          rm -rf ~/.m2/repository/org/bytedeco/srt-platform
-          unzip srt-all.zip
-          mv srt ~/.m2/repository/org/bytedeco
-          mv srt-platform ~/.m2/repository/org/bytedeco
+  
           
           # Install Enterprise
           ./repackage_enterprise.sh 
