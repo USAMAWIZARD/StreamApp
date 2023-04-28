@@ -18,7 +18,7 @@ jobs:
           distribution: 'adopt'	
       - name: Install AMS 
         run: |
-          echo whoami
+          whoami
           which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
           eval $(ssh-agent -s)
           ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
