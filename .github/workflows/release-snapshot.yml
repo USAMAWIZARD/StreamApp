@@ -56,11 +56,11 @@ jobs:
           sudo ./install_ant-media-server.sh -i ./target/ant-media-server-enterprise*.zip
           
           # Build Web Pannel
-          git clone --depth=1 https://github.com/ant-media/ManagementConsole_AngularApp.git;
-          cd ManagementConsole_AngularApp
-          npm install
-          ng build --prod
-          cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
+          #git clone --depth=1 https://github.com/ant-media/ManagementConsole_AngularApp.git;
+          ##cd ManagementConsole_AngularApp
+          #npm install
+          #ng build --prod
+          #cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
           
       - name: Install Chrome 100 
         run: wget http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_100.0.4896.127-1_amd64.deb
