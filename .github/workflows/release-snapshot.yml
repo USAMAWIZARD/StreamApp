@@ -43,6 +43,7 @@ jobs:
           git clone https://github.com/ant-media/Plugins.git
           cd Plugins/FilterPlugin
           mvn install -Dmaven.test.skip=true -Dgpg.skip=true
+          cd ..
           ./repackage_enterprise.sh 
           wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
           sudo ./install_ant-media-server.sh -i ./target/ant-media-server-enterprise*.zip
