@@ -24,6 +24,11 @@ jobs:
           cd ant-media-server-parent/
           mvn clean install -Dgpg.skip=true
           cd ..
+
+          # Build Ant Media Server 
+          git clone https://github.com/ant-media/Ant-Media-Server.git
+          cd Ant-Media-Server
+          mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
           
           # Install SRT Dependencies 
           wget https://storage.sbg.cloud.ovh.net/v1/AUTH_8cb28f9bc6ee43f0a3a1825efbb4311e/test-storage/srt-all.zip
@@ -32,13 +37,8 @@ jobs:
           unzip srt-all.zip
           mv srt ~/.m2/repository/org/bytedeco
           mv srt-platform ~/.m2/repository/org/bytedeco
-          
-          # Build Ant Media Server 
-          git clone https://github.com/ant-media/Ant-Media-Server.git
-          cd Ant-Media-Server
-          mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
-          
           # Build Enterprise 
+          
           git clone https://Ant-Media-Enterprise:${{ secrets.CI_PAT }}@gitlab.com/Ant-Media/Ant-Media-Enterprise.git
           cd Ant-Media-Enterprise
           mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
@@ -50,7 +50,6 @@ jobs:
           mvn install -Dmaven.test.skip=true -Dgpg.skip=true
           cd ../../
   
-          
           # Install Enterprise
           ./repackage_enterprise.sh 
           wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
