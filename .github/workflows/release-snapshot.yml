@@ -18,7 +18,6 @@ jobs:
           distribution: 'adopt'	
       - name: Install AMS 
         run: |
-          whoami
           which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
           eval $(ssh-agent -s)
           ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
@@ -39,11 +38,11 @@ jobs:
           unzip srt-all.zip
           mv srt ~/.m2/repository/org/bytedeco
           mv srt-platform ~/.m2/repository/org/bytedeco
-          mkdir -p /usr/local/antmedia
-          sudo chown 
-          ./redeploy.sh
-          #wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
-          #sudo ./install_ant-media-server.sh -i ./target/ant*.zip
+          mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
+          cd ..
+          ./repackage_enterprise.sh 
+          wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
+          sudo ./install_ant-media-server.sh -i ./target/ant-media-server-enterprise*.zip
       - name: Install Chrome 100 
         run: wget http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_100.0.4896.127-1_amd64.deb
       - run: sudo dpkg -i google-chrome-stable_100.0.4896.127-1_amd64.deb
