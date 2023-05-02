@@ -2,7 +2,7 @@ name: Run JS Test Cases
 on:	
   push:	
     branches:	
-      - master	
+      - master	 
 jobs:	
   publish-npmjs:	
     runs-on: ubuntu-20.04	
