@@ -18,14 +18,11 @@ jobs:
           distribution: 'adopt'	
       - name: Build AMS from source
         run: |
-          # testing
-          # Build Ant Media Parent Project
           git clone https://github.com/ant-media/ant-media-server-parent.git
           cd ant-media-server-parent/
           mvn clean install -Dgpg.skip=true
           cd ..
 
-          # Build Web Pannel
           git clone --depth=1 https://github.com/ant-media/ManagementConsole_AngularApp.git;
           cd ManagementConsole_AngularApp
           npm install
