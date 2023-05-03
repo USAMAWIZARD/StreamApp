@@ -28,7 +28,6 @@ jobs:
           npm install
           sudo npm install -g @angular/cli@10.0.5 
           ng build --prod
-          sudo cp -a ./dist/. /usr/local/antmedia/webapps/root
           
       - name: Install Chrome 100 
         run: wget http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_100.0.4896.127-1_amd64.deb
