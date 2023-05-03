@@ -22,7 +22,7 @@ jobs:
           cd ManagementConsole_AngularApp
           npm install
           sudo npm link @angular/cli
-          ng build --configuration production
+          # ng build --configuration production
           sudo cp -a ./dist/. /usr/local/antmedia/webapps/root
           
       - name: Install Chrome 100 
