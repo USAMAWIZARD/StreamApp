@@ -19,7 +19,7 @@ jobs:
       - name: Build AMS from source
         run: |
           git clone --depth=1 https://github.com/ant-media/ManagementConsole_AngularApp.git;
-          cd ManagementConsole_AngularApp/react
+          cd Ant-Media-Management-Console/react
           npm install
           ng build --configuration production
           sudo cp -a ./dist/. /usr/local/antmedia/webapps/root
