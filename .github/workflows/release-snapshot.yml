@@ -17,21 +17,7 @@ jobs:
           java-version: '11'	
           distribution: 'adopt'	
       - name: Build AMS from source
-        run: |
-          git clone --depth=1 https://github.com/ant-media/ManagementConsole_AngularApp.git;
-          cd ManagementConsole_AngularApp
-          npm install
-          sudo npm install -g @angular/cli@10.0.5 
-          ng build --prod
-          # ng build --configuration production
-          sudo cp -a ./dist/. /usr/local/antmedia/webapps/root
-          
-      - name: Install Chrome 100 
-        run: wget http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_100.0.4896.127-1_amd64.deb
-      - run: sudo dpkg -i google-chrome-stable_100.0.4896.127-1_amd64.deb
-      
-      - name: Build Stream App
-        run: npm install --include=dev	
+      - run: npm install --include=dev	
       - run: npm install --save-dev @babel/cli	
       - run: npm run compile
       - run: sed -i 's/^AMS_DIR=.*/AMS_DIR=\/usr\/local\/antmedia/' redeploy.sh
