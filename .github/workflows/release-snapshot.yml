@@ -21,6 +21,7 @@ jobs:
           git clone --depth=1 https://github.com/ant-media/ManagementConsole_AngularApp.git;
           cd ManagementConsole_AngularApp
           npm install
+          npm i -g @angular/cli
           ng build --configuration production
           sudo cp -a ./dist/. /usr/local/antmedia/webapps/root
           
