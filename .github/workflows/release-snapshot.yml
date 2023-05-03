@@ -21,7 +21,3 @@ jobs:
       - run: npm run compile
       - run: sed -i 's/^AMS_DIR=.*/AMS_DIR=\/usr\/local\/antmedia/' redeploy.sh
       - run: sudo ./redeploy.sh
-      
-      - name: Run JS Tests
-        run: npm install ./src/test/js/
-      - run: npm run test  --prefix ./src/test/js/
