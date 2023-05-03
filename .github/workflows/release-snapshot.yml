@@ -17,6 +17,7 @@ jobs:
           java-version: '11'	
           distribution: 'adopt'	
       - name: Build AMS from source
+        run: echo "VERSION=$(echo ${GITHUB_REF##*/} | cut -d v -f 2)" >> $GITHUB_OUTPUT
       - run: npm install
       - run: npm run compile
       - run: sed -i 's/^AMS_DIR=.*/AMS_DIR=\/usr\/local\/antmedia/' redeploy.sh
